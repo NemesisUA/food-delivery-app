@@ -1,0 +1,79 @@
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex-grow: 1;
+  margin-top: 100px;
+  height: 100%;
+}
+
+.light {
+  color: #333;
+  background-color: #fff;
+}
+
+.dark {
+  color: #ddd;
+  background-color: #333;
+}
+
+.products-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+  gap: 40px;
+  list-style: none;
+  margin: 50px 0;
+}
+
+.shops-list {
+  width: 400px;  
+  list-style: none;
+  margin: 50px 0;
+  padding: 30px 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px lightgray;
+}
+
+.dark .shops-list {
+  box-shadow: 0 0 10px gray;
+}
+
+.shops-list li {
+  color: #424294;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+}
+
+.shops-list li.selected {
+  cursor: default;
+}
+
+.dark .shops-list li {
+  color: #FF9900;  
+}
+
+.shops-list li:hover,
+.shops-list li.selected {
+  color: #fff;
+  background-color: #FF9900;  
+}
+
+.dark .shops-list li:hover,
+.dark .shops-list li.selected {
+  color: #fff;
+  background-color: #e68c70;  
+}
+
+@media screen and (max-width: 991px) {
+  .shops-list {
+    width: 100%;
+  }
+}

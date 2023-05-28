@@ -1,0 +1,94 @@
+.card {
+  display: grid;
+  grid-template-rows: 40px 30px 1fr 50px;
+  width: 300px;
+  height: 440px;   
+  border-radius: 10px;
+  padding: 10px 0;
+  cursor: pointer;  
+  box-shadow: 2px 3px 10px var(--color-secondary);
+  transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+  background-color: var(--color-primary);
+  box-shadow: 2px 3px 10px lightgray;
+  transform: scale(1.05);
+}
+
+.dark .card {
+  background-color: #888;
+  color: #fff;
+}
+
+.dark .card:hover {
+  background-color: #e68c70;  
+  transform: scale(1.05);
+  box-shadow: none;
+}
+
+.card__image {
+  align-self: center;
+}
+
+.card__title {
+  text-align: center;
+  color: #424294;
+  font-style: italic;
+  padding: 0 10px;
+}
+
+.dark .card__title {
+  /* color: #fff; */
+  /* color: #FFBC00; */
+  color: rgb(145, 240, 240);
+}
+
+.card__shop {
+  padding-left: 20px;
+  font-style: italic;
+  font-size: 16px;
+}
+
+.card__image {
+  width: 100%;
+  height: auto;
+}
+
+.card b {
+  color: #424294;
+}
+
+.dark .card b {
+  /* color: #FFBC00; */
+  color: rgb(145, 240, 240);
+}
+
+.card__price {
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.card__buy {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+@media screen and (max-width: 575px) {
+  .card {
+    display: grid;
+    grid-template-rows: 100px 160px 40px 20px 1fr;
+    width: 100%;
+    height: 500px;   
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 2px 3px 10px var(--color-secondary);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .dark .card:hover,
+  .card:hover {
+    transform: scale(1);
+  }
+} 

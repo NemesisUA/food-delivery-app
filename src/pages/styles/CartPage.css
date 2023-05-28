@@ -1,0 +1,64 @@
+.order-user {
+  width: 600px;
+  list-style: none;
+  margin: 50px 0;
+  padding: 30px 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px lightgray;
+  margin-right: 50px;
+}
+
+.dark .shops-list {
+  box-shadow: 0 0 10px gray;
+}
+
+.order-products {
+  display: flex;
+  flex-direction: column;
+  width: 100%;  
+  margin: 50px 0;
+  padding: 30px 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px lightgray;
+}
+
+.cart-container {
+  list-style: none;
+}
+
+.cart-item__input {
+  width: 100px;
+  color: black;
+  background-color: #fff;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  padding: 5px 10px;
+}
+
+.dark .cart-item__input {
+  color: black;
+  background-color: #ddd;
+}
+
+.order-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.total-price {
+  font-size: 3.2rem;
+  text-align: center;
+  margin-right: 60px;
+  margin-left: 40px;
+  color: var(--color-primary);
+  text-shadow: var(--text-shadow);
+}
+
+@media screen and (max-width: 991px) {
+  .order-user {
+    width: 100%;
+    margin-right: 0;
+  }
+}

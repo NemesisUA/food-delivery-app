@@ -1,0 +1,62 @@
+.styled-btn {
+  font-size: 1.8rem;
+  font-weight: 500;    
+  padding: 0.7rem 1.4rem;
+  border-radius: 10px;
+  border: 2px solid var(--color-primary);
+  color: #fff;
+  background-color: var(--color-primary);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.styled-btn.transparent {
+  background-color: transparent;
+  color: #424294;
+  border: 2px solid #424294;
+}
+
+.styled-btn:after {
+  position: absolute;
+  background: #fff;
+  content: "";
+  height: 155px;
+  left: -75px;
+  opacity: 0.2;
+  top: -50px;
+  transform: rotate(35deg);
+  transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+  width: 50px;
+  z-index: -10;
+}
+
+.styled-btn:hover {
+  background-color: var(--color-secondary);
+  border: 2px solid var(--color-secondary);
+  transform: translateY(-1px);
+  box-shadow: var(--box-shadow-dark); 
+}
+
+.styled-btn.transparent:hover {
+  background-color: transparent;
+  color: #424294;
+  border: 2px solid #424294;
+}
+
+.styled-btn:hover::after { 
+  left: 120%;    
+  transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);  
+}
+
+.styled-btn:active {
+  transform: translateY(1px);
+}
+
+.styled-btn:disabled {
+  background-color: grey;
+  border: grey;
+  cursor: default;
+  transform: none;
+}

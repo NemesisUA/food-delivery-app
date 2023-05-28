@@ -1,0 +1,23 @@
+footer {
+  font-size: 1.6rem;   
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;    
+  box-shadow: 0 1px 10px lightgray;
+  
+}
+
+.footer-wrapper {
+  text-align: center;
+}
+
+a.github-link {
+  margin-left: 20px;
+  color: var(--color-primary);
+  transition: all 0.3s ease-in;
+}
+
+.github-link:hover {    
+  color: var(--color-secondary);
+}
