@@ -29,7 +29,7 @@ function OrderForm({ totalPrice }) {
 
     const order = {adress, email, phone, userName, totalPrice, cartItems };
     
-    const response = await fetch('/api/products/cart', {
+    const response = await fetch('https://food-delivery-api-rirm.onrender.com/api/products/cart', {
       method: 'POST',
       body: JSON.stringify(order),
       headers: {

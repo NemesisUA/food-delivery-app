@@ -8,7 +8,7 @@ const SingleShopPage = () => {
   
   useEffect(() => {
     const fetchProducts = async () => {
-      const response = await fetch(`/api/products/${shop}/`)
+      const response = await fetch(`https://food-delivery-api-rirm.onrender.com/api/products/${shop}/`)
       const json = await response.json()
 
       if (response.ok) {
