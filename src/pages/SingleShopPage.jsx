@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { Card } from "../components/UI/Card/Card";
 
 const SingleShopPage = () => {
@@ -17,7 +17,7 @@ const SingleShopPage = () => {
     }
 
     fetchProducts()
-  }, [])
+  }, [shop])
 
   return (
     <div className='wrapper flex-wrapper'>

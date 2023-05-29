@@ -27,7 +27,7 @@ const Card = ({ product, buttonText = false, onClick}) => {
     <div className='card'>
       <h2 className='card__title' >{product.name}</h2>
       <p className='card__shop'>{product.shop}</p>
-      <img className='card__image' src={product.image} alt="food photo" />
+      <img className='card__image' src={product.image} alt="food" />
       <div className='card__buy'>
         <h4 className='card__price'>{`price - $${product.price}`}</h4>
         { buttonText && (

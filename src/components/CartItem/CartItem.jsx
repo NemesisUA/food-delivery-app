@@ -3,16 +3,10 @@ import './CartItem.css';
 import { LocalStorageService, LS_KEYS } from "../../servises/localStorage";
 import { CartContext } from "../../hoc/CartProvider";
 
-function CartItem({ name, price, image, id}) {
+function CartItem({name, price, image, id, amount }) {
   const { cartItems, setCartItems } = useContext(CartContext);
   
-  const storageAmount = LocalStorageService.get(LS_KEYS.CART) ?
-  [...LocalStorageService.get(LS_KEYS.CART)]
-      .filter(el => el.id === id)
-      .map(el => el.amount)[0]
-  : 1;
-
-const [amount, setAmount] = useState(storageAmount || 1);        
+const [count, setCount] = useState(+amount);
   
   const handleDeleteCartItem = (e) => {
     e.preventDefault();     
@@ -24,15 +18,15 @@ const [amount, setAmount] = useState(storageAmount || 1);
   }, [cartItems]);
 
   const handleAmount = (e) => {    
-    setAmount(prev => e.target.value); 
+    setCount(() => +e.target.value);
     
     setCartItems((prevstate) => ([...prevstate.filter(el => el.id !== id), {
       id: id,
       name: name,
       price: price,
       image: image,
-      amount: amount
-  }]));
+      amount: count
+    }].sort((a, b)=> a.id - b.id)));
   }
 
   useEffect(() => {
@@ -51,8 +45,7 @@ const [amount, setAmount] = useState(storageAmount || 1);
 
         <input 
           className='cart-item__input' 
-          type="number" 
-          placeholder={1}
+          type="number"          
           min={1} 
           value={amount}
           onChange={handleAmount}
