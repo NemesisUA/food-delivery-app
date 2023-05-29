@@ -6,9 +6,21 @@ import Button from '../UI/Button/Button';
 import { CartContext } from "../../hoc/CartProvider";
 import { LocalStorageService, LS_KEYS } from "../../servises/localStorage";
 
-function OrderForm({ totalPrice }) {
+function OrderForm() {
   const { cartItems, setCartItems } = useContext(CartContext || []);
   const [isDisabled, setIsDisabled] = useState(true);
+
+  // removed totalPrice from CartPage
+  const [totalPrice, setTotalPrice] = useState([...cartItems].reduce((acc, cur) => {
+    return acc + +cur.price * cur.amount
+  }, 0).toFixed(2) || 0);
+  
+  useEffect(() => {
+    setTotalPrice(() => [...cartItems].reduce((acc, cur) => {
+      return acc + +cur.price * cur.amount
+    }, 0).toFixed(2) || 0);
+  }, []);
+  // end
 
   useEffect(() => {
     const isCartEmpty = [...cartItems].map(item => item.amount)
