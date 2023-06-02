@@ -7,21 +7,26 @@ import { CartContext } from "../../hoc/CartProvider";
 import { LocalStorageService, LS_KEYS } from "../../servises/localStorage";
 
 function OrderForm() {
-  const { cartItems, setCartItems } = useContext(CartContext || []);
+  const {
+    cartItems,
+    setCartItems,
+    totalPrice,
+    setTotalPrice,
+    shopChosen,
+    } = useContext(CartContext);
   const [isDisabled, setIsDisabled] = useState(true);
   
-  // removed totalPrice from CartPage
-  const [totalPrice, setTotalPrice] = useState([...cartItems].reduce((acc, cur) => {
-    return acc + +cur.price * cur.amount
-  }, 0).toFixed(2) || 0);
+  
+  // const [totalPrice, setTotalPrice] = useState([...cartItems].reduce((acc, cur) => {
+  //   return acc + +cur.price * cur.amount
+  // }, 0).toFixed(2) || 0);
 
   useEffect(() => {
     setTotalPrice(() => [...cartItems].reduce((acc, cur) => {
       return acc + +cur.price * cur.amount
     }, 0).toFixed(2) || 0);
   }, [cartItems, totalPrice]);
-  // end
-
+  
   useEffect(() => {
     const isCartEmpty = [...cartItems].map(item => item.amount)
       .reduce((a, b) => a + b, 0) ? false : true;
@@ -39,7 +44,7 @@ function OrderForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const order = { adress, email, phone, userName, totalPrice, cartItems };
+    const order = { adress, email, phone, userName, shopChosen, totalPrice, cartItems };
 
     const response = await fetch('https://food-delivery-api-rirm.onrender.com/api/products/cart', {
       method: 'POST',
@@ -113,7 +118,7 @@ function OrderForm() {
 
           <div className="cart-container">{
             cartItems && cartItems.length >= 1 &&
-            cartItems.sort((a, b)=> a.id - b.id)
+            cartItems.sort((a, b)=> a.id.localeCompare(b.id))
               .map(item => (
                 <CartItem
                   key={item.id}
