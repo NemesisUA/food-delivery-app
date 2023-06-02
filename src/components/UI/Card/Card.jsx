@@ -7,21 +7,36 @@ import { CartContext } from "../../../hoc/CartProvider";
 
 
 const Card = ({ product, buttonText = false, onClick}) => {
-  const { cartItems, setCartItems } = useContext(CartContext);
+  const { 
+    cartItems,
+    setCartItems,
+    totalPrice,
+    setTotalPrice,
+    shopChosen,
+    setShopChosen, } = useContext(CartContext);
 
-  const handleAddToCart = () => {     
+  const handleAddToCart = () => {    
+    setShopChosen(prev => prev === '' ? product.shop : prev);
+    
     setCartItems((prevstate) => ([...prevstate.filter(el => el.id !== product._id), {
       id: product._id,
+      shop: product.shop,
       name: product.name,
       price: product.price,
       image: product.image,
       amount: 1
-    }]));        
+    }]));
+    
+    setTotalPrice( (+totalPrice + +product.price).toFixed(2) );
   }
 
   useEffect(() => {
-    LocalStorageService.set(LS_KEYS.CART, cartItems); 
-  }, [cartItems])
+    LocalStorageService.set(LS_KEYS.CART, {
+      shopChosen: shopChosen,
+      totalPrice: totalPrice,
+      cartItems: cartItems,
+    }); 
+  }, [shopChosen, totalPrice, cartItems])
 
   return (
     <div className='card'>
