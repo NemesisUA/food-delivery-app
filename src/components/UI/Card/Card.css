@@ -1,4 +1,5 @@
 .card {
+  position: relative;
   display: grid;
   grid-template-rows: 40px 30px 1fr 50px;
   width: 300px;
@@ -17,7 +18,7 @@
 }
 
 .dark .card {
-  background-color: #888;
+  background-color: #e7ad9c;
   color: #fff;
 }
 
@@ -73,6 +74,14 @@
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
+}
+
+.card.unchoosable {
+  cursor: default;
+  pointer-events: none;
+  background-color: grey;
+  box-shadow: none;
+  opacity: 0.5;
 }
 
 @media screen and (max-width: 575px) {

@@ -25,7 +25,7 @@ function OrderForm() {
     setTotalPrice(() => [...cartItems].reduce((acc, cur) => {
       return acc + +cur.price * cur.amount
     }, 0).toFixed(2) || 0);
-  }, [cartItems, totalPrice]);
+  }, [cartItems, totalPrice, setTotalPrice]);
   
   useEffect(() => {
     const isCartEmpty = [...cartItems].map(item => item.amount)
@@ -69,7 +69,11 @@ function OrderForm() {
 
     setCartItems(() => []);
     LocalStorageService.remove(LS_KEYS.CART);
-    LocalStorageService.set(LS_KEYS.CART, []);
+    LocalStorageService.set(LS_KEYS.CART, {
+      "chopChosen": '',
+      "totalPrice": 0,
+      "cartItems": [],
+    });
 
     console.log('order: ', JSON.stringify(order))
   }

@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from 'react-router-dom'
 import { Card } from "../components/UI/Card/Card";
+import { CartContext } from "../hoc/CartProvider";
 
 const ShopsPage = () => {
   const [products, setProducts] = useState(null)
-
+  const  { shopChosen }= useContext(CartContext)
+  
   useEffect(() => {
     const fetchProducts = async () => {
       const response = await fetch('https://food-delivery-api-rirm.onrender.com/api/products')
@@ -21,9 +23,15 @@ const ShopsPage = () => {
   return (
     <div className='wrapper flex-wrapper'>
       <ul className='shops-list'>
-        <li><Link to={'/shops/KFC'}>KFC</Link></li>
-        <li><Link to={'/shops/McDonny'}>McDonny</Link></li>
-        <li><Link to={'/shops/BurgerKing'}>BurgerKing</Link></li>
+        <li className={shopChosen === 'KFC' ? 'selected' : ''}>
+          <Link to={'/shops/KFC'}>KFC</Link>
+        </li>
+        <li className={shopChosen === 'McDonny' ? 'selected' : ''}>
+          <Link to={'/shops/McDonny'}>McDonny</Link>
+        </li>
+        <li className={shopChosen === 'BurgerKing' ? 'selected' : ''}>
+          <Link to={'/shops/BurgerKing'}>BurgerKing</Link>
+        </li>
       </ul>
       
       <div className='products-list'>

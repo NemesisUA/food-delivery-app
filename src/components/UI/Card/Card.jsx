@@ -6,7 +6,7 @@ import { LocalStorageService, LS_KEYS } from "../../../servises/localStorage";
 import { CartContext } from "../../../hoc/CartProvider";
 
 
-const Card = ({ product, buttonText = false, onClick}) => {
+const Card = ({ product, buttonText = false, className}) => {
   const { 
     cartItems,
     setCartItems,
@@ -15,8 +15,10 @@ const Card = ({ product, buttonText = false, onClick}) => {
     shopChosen,
     setShopChosen, } = useContext(CartContext);
 
-  const handleAddToCart = () => {    
-    setShopChosen(prev => prev === '' ? product.shop : prev);
+  const handleAddToCart = () => {   
+    if ( !shopChosen ) {
+      setShopChosen(product.shop);
+    }
     
     setCartItems((prevstate) => ([...prevstate.filter(el => el.id !== product._id), {
       id: product._id,
@@ -39,7 +41,7 @@ const Card = ({ product, buttonText = false, onClick}) => {
   }, [shopChosen, totalPrice, cartItems])
 
   return (
-    <div className='card'>
+    <div className={`card ${shopChosen && product.shop !== shopChosen && 'unchoosable'}`}>
       <h2 className='card__title' >{product.name}</h2>
       <p className='card__shop'>{product.shop}</p>
       <img className='card__image' src={product.image} alt="food" />

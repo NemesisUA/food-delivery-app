@@ -4,20 +4,26 @@ import { LocalStorageService, LS_KEYS } from "../../servises/localStorage";
 import { CartContext } from "../../hoc/CartProvider";
 
 function CartItem({name, price, image, id, amount }) {
-  const { cartItems, setCartItems } = useContext(CartContext);
+  const { 
+    cartItems,
+    setCartItems,
+    totalPrice,   
+    shopChosen,
+    setShopChosen
+  } = useContext(CartContext);
   
-const [count, setCount] = useState(+amount);
+  const [count, setCount] = useState(+amount);
   
   const handleDeleteCartItem = (e) => {
-    e.preventDefault();     
-    setCartItems(prevstate => ([...prevstate.filter(el => el.id !== id)]));    
+    e.preventDefault();
+    
+    if ( cartItems.length === 1) {
+      setShopChosen('');
+    }
+    setCartItems(prevstate => ([...prevstate.filter(el => el.id !== id)]));     
   }
 
-  useEffect(() => {
-    LocalStorageService.set(LS_KEYS.CART, cartItems);
-  }, [cartItems]);
-
-  const handleAmount = (e) => {    
+    const handleAmount = (e) => {    
     setCount(() => +e.target.value);
     
     setCartItems((prevstate) => ([...prevstate.filter(el => el.id !== id), {
@@ -30,8 +36,12 @@ const [count, setCount] = useState(+amount);
   }
 
   useEffect(() => {
-    LocalStorageService.set(LS_KEYS.CART,cartItems )
-  }, [cartItems])
+    LocalStorageService.set(LS_KEYS.CART, {
+      "shopChosen": shopChosen,
+      "totalPrice": totalPrice,
+      "cartItems": cartItems,
+    });
+  }, [cartItems, totalPrice, shopChosen]);
 
   return (
     <div className='cart-item'>
