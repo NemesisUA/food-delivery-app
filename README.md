@@ -1,6 +1,6 @@
 # food-delivery-app
 
-This is a repository for frontend part of my Food Delivery project.
+This is a repository for **Frontend** part of my Food Delivery project.
 
 ## View deployment:
 
