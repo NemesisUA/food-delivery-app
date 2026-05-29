@@ -2,6 +2,8 @@
 
 This is a repository for **Frontend** part of my Food Delivery project.
 
+back-end repo is here: https://github.com/NemesisUA/food-delivery-api
+
 ## To run project locally
 
 run project in development mode:
